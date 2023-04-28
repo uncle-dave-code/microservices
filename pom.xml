@@ -15,12 +15,15 @@
     <packaging>pom</packaging>
 
     <properties>
+        <spring-cloud.version>2022.0.2</spring-cloud.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <modules>
+        <module>discovery-server</module>
+        <module>api-gateway</module>
         <module>inventory-service</module>
         <module>orders-service</module>
         <module>products-service</module>
@@ -30,10 +33,31 @@
 
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <plugins>
 
         </plugins>
     </build>
-
+    <repositories>
+        <repository>
+            <id>netflix-candidates</id>
+            <name>Netflix Candidates</name>
+            <url>https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
